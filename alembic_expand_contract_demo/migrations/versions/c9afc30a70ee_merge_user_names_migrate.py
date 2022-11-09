@@ -1,27 +1,20 @@
-"""Merge user names
+"""Merge user names (migrate)
 
-Revision ID: 0585005489f0
-Revises: 6cb93d555e2b
-Create Date: 2022-11-10 17:05:02.774976
+Revision ID: c9afc30a70ee
+Revises: 9c36df1b3f62
 """
 
 from alembic import op
 import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
-revision = '0585005489f0'
-down_revision = '6cb93d555e2b'
+revision = 'c9afc30a70ee'
+down_revision = '9c36df1b3f62'
 branch_labels = None
 depends_on = None
 
 
 def upgrade() -> None:
-    # schema migrations - expand
-    op.add_column(
-        'user_account',
-        sa.Column('name', sa.String(), nullable=True),
-    )
-
     # data migrations
     bind = op.get_bind()
 
@@ -51,11 +44,3 @@ def upgrade() -> None:
                 name=f'{first_name} {last_name}',
             )
         )
-
-    # schema migrations - contract
-    op.drop_column('user_account', 'first_name')
-    op.drop_column('user_account', 'last_name')
-
-
-def downgrade() -> None:
-    raise Exception("Irreversible migration")
