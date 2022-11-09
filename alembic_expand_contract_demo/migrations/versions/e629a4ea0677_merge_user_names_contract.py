@@ -8,8 +8,8 @@ from alembic import op
 
 # revision identifiers, used by Alembic.
 revision = 'e629a4ea0677'
-down_revision = 'c9afc30a70ee'
-branch_labels = None
+down_revision = '9c36df1b3f62'
+branch_labels = ('contract',)
 depends_on = None
 
 
