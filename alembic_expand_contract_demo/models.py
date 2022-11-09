@@ -17,8 +17,7 @@ Base = declarative_base()
 class User(Base):
     __tablename__ = "user_account"
     id = Column(Integer, primary_key=True)
-    first_name = Column(String(30))
-    last_name = Column(String(30))
+    name = Column(String)
     addresses = relationship(
         "Address", back_populates="user", cascade="all, delete-orphan"
     )
